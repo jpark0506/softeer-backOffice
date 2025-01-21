@@ -1,15 +1,16 @@
-import React from 'react'
-
+import './container.css'
 type Props = {
-    children: React.ReactNode
+    children: React.ReactNode;
 }
 
-const RootContainer = ({children} : Props) : React.ReactNode => {
-  return (
-    <div>
-        {children}
-    </div>
-  )
+const RootContainer = (props: Props) => {
+
+    const { children }= props;
+    return (
+        <div className="root-container">
+            {children}
+        </div>
+    )
 }
 
 export default RootContainer

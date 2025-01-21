@@ -8,12 +8,12 @@ export function convertJsonToPaths(jsonData: any): Path[] {
   const paths: Path[] = [];
 
   // JSON 데이터 순회
-  for (const [pathId, verticesData] of Object.entries(jsonData)) {
-    const vertices: Vertex[] = verticesData?.map((vertex: any, index: number) => ({
+  for (const [pathId, verticesData] of Object.entries(jsonData) as [string, { lat: number, lng: number }[]][]) {
+    const vertices: Vertex[] = verticesData.map((vertex: any, index: number) => ({
       id: `vertex-${pathId}-${index}`,
       lat: vertex.lat,
       lng: vertex.lng,
-      isMain: index === 0 || index === verticesData?.length - 1 // 첫 번째와 마지막 Vertex를 메인으로 설정
+      isMain: index === 0 || index === verticesData.length - 1 // 첫 번째와 마지막 Vertex를 메인으로 설정
     }));
 
     const edges: Edge[] = [];

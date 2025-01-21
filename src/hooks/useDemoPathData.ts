@@ -1,14 +1,15 @@
 import { useEffect } from "react";
+import pathDataList from '../path/coordinates.json'
 import { convertJsonToPaths } from "../path/jsonToPath";
-import pathData from "../path/coordinates.json"
-import { pathData } from "../path/pathData";
 
 export const useDemoPathData = (map, AdvancedMarker, Polyline) => {
     
       useEffect(()=>{
         if (!map || !AdvancedMarker  || !Polyline) return;
 
-        const pathData = convertJsonToPaths(pathData)
+        const pathDatas = convertJsonToPaths(pathDataList);
+
+        pathDatas.forEach((pathData) => {
     
         pathData.getMainVertices().forEach((vertex) => {
           new AdvancedMarker({
@@ -51,6 +52,6 @@ export const useDemoPathData = (map, AdvancedMarker, Polyline) => {
             console.log(`Left Edge: ${edge.id}`);
             polyline.setOptions({ strokeColor: "#FF0000" }); // 원래 색상으로 복원
           });
-        });
+        })});
       }, [map, AdvancedMarker, Polyline]);
 }

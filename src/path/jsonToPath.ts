@@ -1,5 +1,4 @@
 import { Edge, Path, Vertex } from "./pathInterfaces";
-import jsonData from "./coordinates.json"; // J
 /**
  * JSON 데이터를 Path 객체로 변환
  * @param jsonData JSON 데이터
@@ -10,11 +9,11 @@ export function convertJsonToPaths(jsonData: any): Path[] {
 
   // JSON 데이터 순회
   for (const [pathId, verticesData] of Object.entries(jsonData)) {
-    const vertices: Vertex[] = verticesData.map((vertex: any, index: number) => ({
+    const vertices: Vertex[] = verticesData?.map((vertex: any, index: number) => ({
       id: `vertex-${pathId}-${index}`,
       lat: vertex.lat,
       lng: vertex.lng,
-      isMain: index === 0 || index === verticesData.length - 1 // 첫 번째와 마지막 Vertex를 메인으로 설정
+      isMain: index === 0 || index === verticesData?.length - 1 // 첫 번째와 마지막 Vertex를 메인으로 설정
     }));
 
     const edges: Edge[] = [];
